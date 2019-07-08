@@ -1,0 +1,9 @@
+/*
+    make the map the same size as the element that contains it
+    so 100% of the width and boarder
+*/
+
+ #map {
+    height: 100%;
+    width: 100%;
+ }
