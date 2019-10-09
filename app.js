@@ -48,6 +48,7 @@ function initMap() {
         return validkey;
     }
     
+/*
     $(document).ready(function(){
       console.log("page ready");
       console.log("checking for valid api key");
@@ -55,6 +56,8 @@ function initMap() {
          var apicode = getCookie("apikey");
          // TODO: add the API key to the div tag in the index page
       }
+
     });
+*/
 
 })(Window);
