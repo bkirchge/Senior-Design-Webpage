@@ -100,10 +100,14 @@ function initMap() {
 })();
 
 // class for hologram calls
+// usefull links:
+// https://hologram.io/docs/reference/cloud/http/
+// 
 // https://github.com/jlongster/canvas-game-bootstrap/blob/master/js/sprite.js
 (function(){
-  function Hologram(){
-
+  function Hologram(deviceName,hologramAPI){
+    this.apiKey = hologramAPI;
+    this.deviceName = deviceName;
   }
 })();
 
