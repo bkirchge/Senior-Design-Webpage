@@ -20,7 +20,6 @@ function initMap() {
 
 (function(w){
 
-
     // helper function for cookies from W3 schools
     function getCookie(cname) {
         var name = cname + "=";
@@ -54,12 +53,25 @@ function initMap() {
       debugger;
     }
   
+
+    // collection of functions for updating stuff on the actuall web page
+    var uiBoxStatusModal = {}; // object for holding functions relating to the box status modal
+
+    uiBoxStatusModal.updateDeviceList = function(){
+      var buttonHtml = "<li class=\"list-group-item\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">BOX PLACE HOLDER 0</button></li>";
+      var boxList = $('[name="active_box_list"]'); // list a list of boxes
+      debugger;
+    }
+
+    // this is a Jquery event that files when the entire box is loaded
     $(document).ready(function(){
       console.log("page ready");
       console.log("checking for valid api key");
       //placeTestPins();
       // connect to the hologram api
       var hologramService = new Hologram("XXXnothing");
+      // Attach UI control events to the bootstrap page
+      uiBoxStatusModal.updateDeviceList();
     });
 
 })(Window);
@@ -111,7 +123,11 @@ function initMap() {
     this.apiKey = hologramAPI;
   }
 
- 
+
+  this.getActiveDevies = function(){
+    activeBoxes = []; // make an array of itmes with 'Box' type
+    return activeBoxes;
+  }
 
   window.Hologram = Hologram;
 })();
