@@ -57,10 +57,21 @@ function initMap() {
     // collection of functions for updating stuff on the actuall web page
     var uiBoxStatusModal = {}; // object for holding functions relating to the box status modal
 
-    uiBoxStatusModal.updateDeviceList = function(){
-      var buttonHtml = "<li class=\"list-group-item\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">BOX PLACE HOLDER 0</button></li>";
+    uiBoxStatusModal.deviceInfoButtons = function(){
+      var buttonHtml = "<li class=\"list-group-item\"><button type=\"button\" class=\"btn btn-primary btn-lg btn-block\">BOX PLACE HOLDER $N$</button></li>";
       var boxList = $('[name="active_box_list"]'); // list a list of boxes
-      debugger;
+      // make a list of dummy boxes, for now
+      var mockList = Hologram.makeDeviceDummyList(4);
+      for(var i=0;i<mockList.length;i++){
+        boxList.append(buttonHtml.replace("$N$",i+""));
+      }
+    }
+
+    uiBoxStatusModal.updateActiveDeviceList = function(){
+      $('[name="boxlist_update_button"]').click(function(){
+        console.log("sent a reqest for updating current");
+        
+      });
     }
 
     // this is a Jquery event that files when the entire box is loaded
@@ -69,20 +80,34 @@ function initMap() {
       console.log("checking for valid api key");
       //placeTestPins();
       // connect to the hologram api
-      var hologramService = new Hologram("XXXnothing");
+      //var hologramService = new Hologram("XXXnothing");
+      Hologram.setApiKey("XXXnothing");
       // Attach UI control events to the bootstrap page
-      uiBoxStatusModal.updateDeviceList();
+      uiBoxStatusModal.deviceInfoButtons();
+      uiBoxStatusModal.updateActiveDeviceList();
     });
 
 })(Window);
 
-// class for a BAT box
-// this is just gonna be down here for now, but in the future
-(function () {
-  function Box(boxID) {
+
+// class for hologram calls
+// usefull links:
+// https://hologram.io/docs/reference/cloud/http/
+// 
+// https://github.com/jlongster/canvas-game-bootstrap/blob/master/js/sprite.js
+// also has the class for the Bat box
+
+
+(function(){
+//  function Hologram(hologramAPI){
+//    this.apiKey = hologramAPI;
+//  }
+
+  // Javascript class for related functions
+  function Box(boxID,bLat,bLng) {
     this.boxID = boxID;
     this.dummyMode = false;
-    this.location = {lat: 0 , lng: 0};
+    this.location = {lat: bLat , lng: bLng};
   }
 
   // return a dictionary for x and y
@@ -102,6 +127,7 @@ function initMap() {
 
   }
 
+
   // turn a blank box object into a dummy box
   Box.prototype.makeDummy = function(testPos,testCurrent){
     this.dummyMode = true;
@@ -111,22 +137,37 @@ function initMap() {
   
   window.Box = Box;
 
-})();
+  var Hologram = {}; // object for hologram functions
 
-// class for hologram calls
-// usefull links:
-// https://hologram.io/docs/reference/cloud/http/
-// 
-// https://github.com/jlongster/canvas-game-bootstrap/blob/master/js/sprite.js
-(function(){
-  function Hologram(hologramAPI){
+  Hologram.setApiKey = function(hologramAPI){
     this.apiKey = hologramAPI;
   }
 
 
-  this.getActiveDevies = function(){
+  Hologram.getActiveDevies = function(){
     activeBoxes = []; // make an array of itmes with 'Box' type
     return activeBoxes;
+  }
+
+  Hologram.isApiKeySet = function(){
+    var isSet = false;
+    if(this.apiKey){
+      isSet = true;
+    }
+    return isSet;
+  }
+
+  // return a list of dummy boxes
+  Hologram.makeDeviceDummyList = function(nDevices){
+    //var nDevices = 10;
+    var dummyList = [];
+    for(var i=0;i<nDevices;i++){
+      var dbox = new Box(i,0,0); // right now just 0,0
+      dbox.dummyMode = true;
+      dummyList.push(dbox);
+    }
+   
+    return dummyList;
   }
 
   window.Hologram = Hologram;
