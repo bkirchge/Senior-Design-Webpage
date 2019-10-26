@@ -4,7 +4,8 @@
   <title>Big asset Tracker web app</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="./lib/bootstrap.css">
   <link rel="stylesheet" href="./custom.css">
   <!--
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -107,7 +108,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Scan for new boxes</button>
       </div>
     </div>
   </div>
@@ -117,11 +118,18 @@
 
 
 <!-- imports for bootstrap -->
+<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+-->
+<!--import the CDNs from a local file-->
+<script src="./lib/jquery.min.js"></script>
+<script src="./lib/bootstrap.js"></script>
+<script src="./lib/popper.js"></script>
 <!-- imports for application code  -->
 <script src="./app.js"></script>
+<script src="./secret_api_keys.js"></script> <!-- this file is encrypted -->
 <!-- add an import for google maps.  This will be updated by a script-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyUPmf7IDZ2HnqKoIkrNCLjuEfv4vqobs&callback=initMap"></script>
 

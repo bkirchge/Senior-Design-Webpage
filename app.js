@@ -13,6 +13,7 @@ function initMap() {
     });
 
     var marker = new google.maps.Marker({map: map, position: home,title:"ass eating capital of america"});
+
     Window.google_map = map;
 }
 
@@ -53,11 +54,12 @@ function initMap() {
       debugger;
     }
   
-
     $(document).ready(function(){
       console.log("page ready");
       console.log("checking for valid api key");
-      placeTestPins();
+      //placeTestPins();
+      // connect to the hologram api
+      var hologramService = new Hologram("XXXnothing");
     });
 
 })(Window);
@@ -105,9 +107,12 @@ function initMap() {
 // 
 // https://github.com/jlongster/canvas-game-bootstrap/blob/master/js/sprite.js
 (function(){
-  function Hologram(deviceName,hologramAPI){
+  function Hologram(hologramAPI){
     this.apiKey = hologramAPI;
-    this.deviceName = deviceName;
   }
+
+ 
+
+  window.Hologram = Hologram;
 })();
 
