@@ -74,6 +74,7 @@ function initMap() {
       });
     }
 
+    // super important
     // this is a Jquery event that files when the entire box is loaded
     $(document).ready(function(){
       console.log("page ready");
@@ -81,7 +82,8 @@ function initMap() {
       //placeTestPins();
       // connect to the hologram api
       //var hologramService = new Hologram("XXXnothing");
-      Hologram.setApiKey("XXXnothing");
+      var holoKey = "7W0zCvqPkKvI6A2E7X6oXVvvsRNGJ";
+      Hologram.setApiKey(holoKey);
       // Attach UI control events to the bootstrap page
       uiBoxStatusModal.deviceInfoButtons();
       uiBoxStatusModal.updateActiveDeviceList();
