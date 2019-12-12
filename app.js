@@ -74,6 +74,18 @@ function initMap() {
       });
     }
 
+    // functianlity for lookup up gps coordnets
+    uiBoxStatusModal.gpsSearchModal = function(){
+        $('#searchpin').click(function(){
+            //alert("button clicked");
+            // get the values for the latiutde and logitude of the desired pin
+            var lat = $("#pin_lat").val();
+            var lon = $("#pin_lon").val();
+            // figure out which radio button is pressed
+            
+        });
+    }
+
     // super important
     // this is a Jquery event that files when the entire box is loaded
     $(document).ready(function(){
@@ -87,6 +99,7 @@ function initMap() {
       // Attach UI control events to the bootstrap page
       uiBoxStatusModal.deviceInfoButtons();
       uiBoxStatusModal.updateActiveDeviceList();
+      uiBoxStatusModal.gpsSearchModal();
     });
 
 })(Window);
