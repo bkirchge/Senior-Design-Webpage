@@ -128,8 +128,8 @@ function initMap() {
               }
 
               // for some reason we no have to move the decimal 2 points back, so lets do that
-              latitude = latitude / 100;
-              longitude = longitude / 100;
+              latitude = latitude / 100 + 0.23110;
+              longitude = longitude / 100 + -0.37593;
               var nextPoint = {lat: latitude,lng: longitude};
               var map = new google.maps.Map(document.getElementById('map'), {zoom: 11, center: nextPoint});
               var marker = new google.maps.Marker({position: nextPoint, map: map});
