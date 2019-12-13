@@ -12,7 +12,7 @@ function initMap() {
         zoom: 16
     });
 
-    var marker = new google.maps.Marker({map: map, position: home,title:"ass eating capital of america"});
+    //var marker = new google.maps.Marker({map: map, position: home,title:"ass eating capital of america2"});
 
     Window.google_map = map;
 }
@@ -76,13 +76,65 @@ function initMap() {
 
     // functianlity for lookup up gps coordnets
     uiBoxStatusModal.gpsSearchModal = function(){
+
+
+  
         $('#searchpin').click(function(){
             //alert("button clicked");
             // get the values for the latiutde and logitude of the desired pin
             var lat = $("#pin_lat").val();
             var lon = $("#pin_lon").val();
-            // figure out which radio button is pressed
+            // call google maps and place the elment on the map
             
+            if(lat.length > 0 && lon.length > 0){
+              // parse out the lattitude
+              var negative_lat = false;
+              var digitStr = null;
+              var signedPos_lat = lat.indexOf('S'); // south denotes negative
+              if(signedPos_lat > 0){
+                negative_lat = true;
+                digitStr = parseFloat(lat.slice(0,signedPos_lat));
+              } else {
+                var a = lat.indexOf('N');
+                if(a < 0){
+                  digitStr = parseFloat(lat);
+                }else{
+                  digitStr = parseFloat(lat.slice(0,a));
+                }
+              }
+              // parse out the longitude
+              var negative_lon = false;
+              var ldigitStr = null;
+              var signedPos_lon = lon.indexOf('W') // West denotes negative         
+              if(signedPos_lon > 0){
+                negative_lon = true;
+                ldigitStr = parseFloat(lon.slice(0,signedPos_lon));
+              }else{
+                var a = lon.indexOf('E');
+                if(a < 0){
+                  ldigitStr = parseFloat(lon);
+                }else{
+                  ldigitStr = parseFloat(lon.slice(0,a));
+                }                      
+              }
+
+              // make values negative if they're negative
+              var latitude = digitStr,longitude = ldigitStr;
+              if(negative_lat){
+                latitude = latitude * -1;
+              } 
+              if(negative_lon){
+                longitude = longitude *-1;
+              }
+
+              // for some reason we no have to move the decimal 2 points back, so lets do that
+              latitude = latitude / 100;
+              longitude = longitude / 100;
+              var nextPoint = {lat: latitude,lng: longitude};
+              var map = new google.maps.Map(document.getElementById('map'), {zoom: 11, center: nextPoint});
+              var marker = new google.maps.Marker({position: nextPoint, map: map});
+          }
+
         });
     }
 
