@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Big asset Tracker web app</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="./lib/bootstrap.css">
   <link rel="stylesheet" href="./custom.css">
   <!--
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -17,7 +18,7 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand/logo -->
   <a class="navbar-brand" href="#">
-    <img src="Capture.jpg" alt="logo" style="width:40px;">
+    <img src="Capture.JPG" alt="logo" style="width:40px;">
   </a>
 
   <!-- Links -->
@@ -66,26 +67,116 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#allboxModal">
         Available Boxes
     </button>
-    <!-- add a new box -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newboxModal">
-        New Boxes
+    <!-- button for looking up gps cordnets -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#gps_search_modal">
+        search for a set of gps coordnets
     </button>
-
+<!-- Example single danger button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Separated link</a>
+  </div>
 </div>
+</div>
+
+
+<!-- 
+    bootstrap modal for looking up gps coordents.
+-->
+
+<div class="modal fade" id="gps_search_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Look up a location</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- input group for lattitude and logitude -->       
+        <!-- latitude  -->
+        <div class="input-group mb-3">
+           <div class="input-group-prepend">
+                <span class="input-group-text">latitude</span>
+           </div>
+           <input type="text" class="form-control" placeholder="0.0" aria-label="Username" aria-describedby="basic-addon1" id="pin_lat">
+        </div>
+        <!-- longitude -->
+        <div class="input-group mb-3">
+           <div class="input-group-prepend">
+                <span class="input-group-text">longitude</span>
+           </div>
+           <input type="text" class="form-control" placeholder="0.0" aria-label="Username" aria-describedby="basic-addon1" id="pin_lon">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id ="searchpin" >place pin</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- bootstap modal for listing aviable boxes -->
 <!--
     https://getbootstrap.com/docs/4.0/components/modal/
-
     this is the menu for basic menu stuff
 -->
 
+<div class="modal fade" id="allboxModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="avboxes">Active boxes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"> <!-- this is a list of active boxes.   -->
+        <ul class="list-group" id="active_boxlist" name="active_box_list">
+          <li class="list-group-item"><button type="button" class="btn btn-primary btn-lg btn-block">BOX PLACE HOLDER 0</button></li>
+<!--
+          <li class="list-group-item"><button type="button" class="btn btn-primary btn-lg btn-block">BOX</button></li>
+          <li class="list-group-item"><button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button></li>
+          <li class="list-group-item"><button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button></li>
+          <li class="list-group-item"><button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button></li>
+-->
+       </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" name="boxlist_update_button">Scan for new boxes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 <!-- imports for bootstrap -->
+<!--
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+-->
+<!--import the CDNs from a local file-->
+<script src="./lib/jquery.min.js"></script>
+<script src="./lib/bootstrap.js"></script>
+<script src="./lib/popper.js"></script>
 <!-- imports for application code  -->
 <script src="./app.js"></script>
-<!-- add an import for google maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJRF16bYSiomxuCV4jWbIZzUmv8KLPfAQ&callback=initMap"></script>
+<script src="./secret_api_keys.js"></script> <!-- this file is encrypted -->
+<!-- add an import for google maps.  This will be updated by a script-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyUPmf7IDZ2HnqKoIkrNCLjuEfv4vqobs&callback=initMap"></script>
 
 </html>
